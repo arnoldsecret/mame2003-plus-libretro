@@ -28,8 +28,11 @@ WRITE_HANDLER( namcos1_wavedata_w );
 READ_HANDLER( namcos1_sound_r );
 READ_HANDLER( namcos1_wavedata_r );
 
-extern unsigned char *namco_soundregs;
-extern unsigned char *namco_wavedata;
+WRITE_HANDLER( namcos1_cus30_w );	/* wavedata + sound registers + RAM */
+READ_HANDLER( namcos1_cus30_r );
+
+extern data8_t *namco_soundregs;
+extern data8_t *namco_wavedata;
 
 
 #define pengo_soundregs namco_soundregs
