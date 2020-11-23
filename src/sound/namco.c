@@ -725,26 +725,23 @@ WRITE_HANDLER( namcos1_sound_w )
 	}
 }
 
-READ_HANDLER( namcos1_sound_r )
+WRITE_HANDLER( namcos1_cus30_w )
 {
-	return namco_soundregs[offset];
-}
-
-WRITE_HANDLER( namcos1_wavedata_w )
-{
-	if (namco_wavedata[offset] != data)
+	if (offset < 0x100)
 	{
-		/* update the streams */
-		stream_update(stream,0);
+		if (namco_wavedata[offset] != data)
+		{
+			/* update the streams */
+			stream_update(stream,0);
 
-		namco_wavedata[offset] = data;
+		  namco_wavedata[offset] = data;
 
-		/* update the decoded waveform table */
-		update_namco_waveform(offset, data);
+		  /* update the decoded waveform table */
+		  update_namco_waveform(offset, data);
 	}
 }
 
-READ_HANDLER( namcos1_wavedata_r )
+READ_HANDLER( namcos1_cus30_r )
 {
 	return namco_wavedata[offset];
 }
